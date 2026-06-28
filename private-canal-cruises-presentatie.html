@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>Private Canal Cruises — Presentatie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#16263f;--green-deep:#101b2e;--cream:#f3efe4;--cream-soft:#e9e3d3;
+  --gold:#b08d4f;--gold-light:#c9aa6e;--ink:#1a2740;
+  --muted:rgba(243,239,228,0.62);--line:rgba(243,239,228,0.18);
+  --display:"Cormorant Garamond",Georgia,serif;--body:"Jost","Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;width:100%;overflow:hidden;background:#0a1220}
+body{font-family:var(--body);color:var(--cream);-webkit-font-smoothing:antialiased;font-weight:300}
+#deck{height:100dvh;width:100vw;position:relative}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .9s ease;background:var(--green);padding:clamp(26px,4.6vw,80px);justify-content:center}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.slide.bg-cover{background-size:cover;background-position:center;padding:0;justify-content:flex-end}
+.slide .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,32,.25) 0%,rgba(10,18,32,.12) 38%,rgba(10,18,32,.82) 100%);z-index:1}
+.slide .inner{position:relative;z-index:2;width:100%}
+.slide.active .reveal{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+.slide.active .reveal:nth-child(2){animation-delay:.1s}
+.slide.active .reveal:nth-child(3){animation-delay:.2s}
+.slide.active .reveal:nth-child(4){animation-delay:.3s}
+.slide.active .reveal:nth-child(5){animation-delay:.4s}
+.slide.active .reveal:nth-child(6){animation-delay:.5s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.slide.active .reveal{animation:none}}
+.eyebrow{font-family:var(--body);font-weight:400;letter-spacing:.42em;text-transform:uppercase;font-size:clamp(9px,1vw,12px);color:var(--gold-light)}
+h1,h2{font-family:var(--display);font-weight:500;line-height:1.02;letter-spacing:.005em}
+h1{font-size:clamp(40px,8.5vw,128px)}
+h2{font-size:clamp(28px,5vw,68px)}
+p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-width:50ch;font-weight:300}
+.rule{width:54px;height:1px;background:var(--gold);margin:0 0 24px}
+.cover{background:var(--green-deep);justify-content:center;align-items:center;text-align:center}
+.cover-bg{position:absolute;inset:0;background-size:cover;z-index:0}
+.cover-bg-portrait{display:none}
+@media (max-width:860px) and (orientation:portrait){.cover-bg-landscape{display:none}.cover-bg-portrait{display:block}}
+.rotate-prompt{display:none;position:fixed;inset:0;z-index:9999;background:var(--green-deep);flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--cream);font-family:var(--body)}
+.rotate-prompt svg{width:60px;height:60px;fill:var(--gold);margin-bottom:20px;animation:rotate-hint 2s ease-in-out infinite}
+.rotate-prompt p{font-size:16px;color:var(--muted)}
+@keyframes rotate-hint{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-90deg)}}
+@media (max-width:860px) and (orientation:landscape){.rotate-prompt{display:flex}}
+.cover .gallery{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;z-index:0}
+.cover .gallery div{background-size:cover;background-position:center;filter:saturate(.9) brightness(.6)}
+.cover .gallery::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(16,38,63,.5) 0%,rgba(10,18,32,.92) 100%)}
+.cover .inner{z-index:3;transform:translateY(-8vh)}
+.cover .star{font-size:clamp(13px,1.5vw,19px);letter-spacing:.5em;color:var(--gold);margin-bottom:24px}
+.cover h1{font-size:clamp(46px,10vw,150px);font-weight:500}
+.cover .sub{margin-top:20px;font-size:clamp(11px,1.1vw,15px);letter-spacing:.34em;text-transform:uppercase;color:var(--cream);font-weight:300}
+.pano{justify-content:center;padding-top:clamp(78px,11vh,130px)}
+.pano-grid{display:flex;flex-direction:column;gap:clamp(22px,3vw,40px);width:100%;max-width:1500px;margin:0 auto}
+.pano-img{width:100%;height:clamp(200px,40vh,440px);background-size:cover;background-position:center 78%;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.42)}
+.pano-copy{max-width:1000px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4.5vw,76px);align-items:center;height:100%}
+.media{height:78vh;border-radius:2px;background-size:cover;background-position:center;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.copy{display:flex;flex-direction:column;justify-content:center}
+.boat-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,64px);align-items:center;height:100%}
+.boat-hero{height:78vh;border-radius:2px;background-size:cover;background-position:center;box-shadow:0 30px 80px rgba(0,0,0,.42)}
+.boat-copy{display:flex;flex-direction:column;justify-content:center}
+.meta{display:flex;gap:clamp(18px,2.6vw,46px);margin:24px 0 22px;flex-wrap:wrap}
+.meta .item .k{font-family:var(--display);font-size:clamp(24px,2.8vw,42px);color:var(--cream);line-height:1}
+.meta .item .l{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-top:8px}
+.feat{list-style:none;columns:2;column-gap:30px;max-width:540px}
+.feat li{font-size:clamp(12px,1.05vw,15px);color:var(--muted);padding:6px 0 6px 16px;position:relative;break-inside:avoid}
+.feat li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;border:1px solid var(--gold);transform:rotate(45deg)}
+.strip{display:flex;gap:12px;margin-top:24px}
+.strip div{flex:1;height:clamp(110px,17vh,190px);background-size:cover;background-position:center;border-radius:2px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.usps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,48px);margin-top:40px}
+.usp{border-top:1px solid var(--line);padding-top:20px}
+.usp .n{font-family:var(--display);font-size:clamp(26px,3vw,44px);color:var(--gold);line-height:1}
+.usp h3{font-family:var(--display);font-weight:500;font-size:clamp(19px,1.9vw,27px);margin:12px 0 9px}
+.usp p{font-size:clamp(12px,1vw,15px);line-height:1.62;color:var(--muted)}
+.cul-grid{display:grid;grid-template-columns:1.1fr 0.9fr 0.9fr 1fr;grid-template-rows:1fr 1.1fr;gap:10px;height:60vh;margin-top:8px}
+.cul-grid div{background-size:cover;background-position:center;border-radius:2px;box-shadow:0 16px 40px rgba(0,0,0,.34)}
+.cul-grid .tall{grid-row:span 2}
+.cul-grid .wide{grid-column:span 2}
+.slide-pad{justify-content:flex-start;padding-top:clamp(78px,11vh,120px)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,40px);margin-top:42px}
+.step .n{font-family:var(--display);font-size:clamp(32px,4vw,58px);color:var(--gold);line-height:1;opacity:.92}
+.step h3{font-family:var(--display);font-weight:500;font-size:clamp(18px,1.7vw,24px);margin:12px 0 7px}
+.step p{font-size:clamp(12px,1vw,14px);line-height:1.55;color:var(--muted)}
+.close{justify-content:center}
+.contact{display:flex;gap:clamp(32px,6vw,90px);margin-top:42px;flex-wrap:wrap}
+.contact .item .l{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px}
+.contact .item a,.contact .item span{font-family:var(--display);font-size:clamp(18px,1.9vw,28px);color:var(--cream);text-decoration:none}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:clamp(16px,2.2vw,28px) clamp(22px,4vw,58px);pointer-events:none}
+.brandmark{font-family:var(--display);font-size:clamp(14px,1.4vw,19px);letter-spacing:.32em;text-transform:uppercase;color:var(--cream);opacity:.92;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.brandmark .s{color:var(--gold)}
+.lang{pointer-events:auto;display:flex;gap:2px;align-items:center}
+.lang button{background:none;border:none;color:var(--muted);font-family:var(--body);font-size:12px;letter-spacing:.18em;cursor:pointer;padding:6px 9px;transition:color .3s}
+.lang button.on{color:var(--gold-light)}
+.lang .sep{color:var(--line)}
+.counter{position:fixed;bottom:clamp(18px,2.6vw,36px);left:clamp(22px,4vw,58px);z-index:30;font-family:var(--display);font-size:clamp(14px,1.3vw,18px);color:var(--muted);letter-spacing:.1em}
+.counter .cur{color:var(--cream)}
+.dots{position:fixed;bottom:clamp(18px,2.6vw,36px);left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:10px}
+.dots button{width:7px;height:7px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer;transition:all .35s}
+.dots button.on{background:var(--gold);transform:scale(1.25)}
+.arrows{position:fixed;bottom:clamp(16px,2.6vw,34px);right:clamp(22px,4vw,58px);z-index:30;display:flex;gap:12px}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(243,239,228,.05);color:var(--cream);cursor:pointer;font-size:18px;transition:all .3s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.arrows button:hover{border-color:var(--gold);background:rgba(176,141,79,.16)}
+.arrows button:disabled{opacity:.25;cursor:default}
+.arrows button:focus-visible,.dots button:focus-visible,.lang button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.hint{position:fixed;bottom:clamp(60px,8vw,90px);left:50%;transform:translateX(-50%);z-index:30;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);opacity:.7;transition:opacity .6s}
+.hint.hide{opacity:0}
+.dev-panel{position:fixed;top:50%;right:20px;transform:translateY(-50%);z-index:100;background:rgba(0,0,0,.92);border:1px solid var(--gold);border-radius:8px;padding:16px;width:280px;font-size:12px;display:none;backdrop-filter:blur(10px)}
+.dev-panel.show{display:block}
+.dev-panel h4{color:var(--gold);margin:0 0 12px;font-family:var(--body);font-weight:500;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.dev-panel label{display:block;color:var(--cream);margin:8px 0 4px;font-size:11px}
+.dev-panel input[type="range"]{width:100%;accent-color:var(--gold)}
+.dev-panel .val{color:var(--gold-light);font-family:monospace;font-size:10px}
+.dev-panel .img-name{color:var(--muted);font-size:10px;margin-bottom:12px;word-break:break-all}
+.dev-panel button{background:var(--gold);color:var(--green-deep);border:none;padding:8px 12px;border-radius:4px;cursor:pointer;font-size:11px;margin-top:12px;width:100%}
+.dev-panel button:hover{background:var(--gold-light)}
+.dev-panel .targets{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.dev-panel .target{padding:6px 8px;margin:4px 0;background:rgba(255,255,255,.05);border-radius:4px;cursor:pointer;color:var(--cream);font-size:10px}
+.dev-panel .target:hover{background:rgba(255,255,255,.12)}
+.dev-panel .target.active{border:1px solid var(--gold)}
+/* Tablet landscape */
+@media (max-width:1024px){
+  .slide{padding:clamp(20px,3.5vw,50px)}
+  .pano{padding-top:clamp(60px,9vh,100px)}
+}
+/* Tablet portrait */
+@media (max-width:860px){
+  .split,.boat-wrap{grid-template-columns:1fr;gap:16px}
+  .media,.boat-hero{height:32vh;order:-1;margin-top:10px}
+  .usps,.steps{grid-template-columns:1fr 1fr;gap:24px}
+  .cover .gallery{grid-template-columns:1fr}
+  .feat{columns:3;column-gap:20px}
+  .feat li{font-size:11px;padding:4px 0 4px 14px}
+  .pano-img{height:28vh}
+  .pano{padding-top:clamp(80px,12vh,120px)}
+  .pano-copy{padding-top:16px}
+  .cul-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);height:auto;gap:8px}
+  .cul-grid .tall,.cul-grid .wide{grid-row:auto;grid-column:auto}
+  .cul-grid div{height:18vh}
+  .brandmark{font-size:11px;letter-spacing:.18em}
+  .strip div{height:12vh}
+  .strip{gap:6px}
+  .slide[data-i="2"]{padding-top:clamp(80px,12vh,120px)}
+  .slide[data-i="2"] .inner{padding-top:0}
+  .slide[data-i="7"]{padding-top:clamp(70px,10vh,100px)}
+  .slide[data-i="8"]{padding-top:clamp(70px,10vh,100px)}
+  .slide[data-i="8"] h2{max-width:100%}
+  .slide[data-i="9"] .copy{padding-top:20px}
+  .slide[data-i="9"] h2{font-size:clamp(20px,4vw,28px)}
+  .slide[data-i="10"]{justify-content:center;padding-bottom:clamp(60px,10vh,100px)}
+  .slide[data-i="10"] .contact{margin-top:28px}
+}
+/* Tablet portrait orientation specific */
+@media (max-width:860px) and (orientation:portrait){
+  /* P2: Walter en Yuri foto lager in portrait */
+  .slide[data-i="1"] .owners-photo{transform:translateY(85%)!important}
+  /* P3: foto naar links (boot in beeld), tekst breder */
+  .slide[data-i="2"]{background-position:30% center!important}
+  .slide[data-i="2"] .inner{margin-top:-25vh;max-width:90%!important}
+  /* P4: vakken minder hoog, fotos vakvullend */
+  .slide[data-i="3"] .inner{padding-top:50px}
+  .slide[data-i="3"] .inner>div:last-child{display:flex;flex-direction:column;gap:10px}
+  .slide[data-i="3"] .inner>div:last-child>div>div:first-child{height:18vh!important;background-size:cover!important}
+  /* P5/6/7: tekstblok + fotos omhoog */
+  .slide[data-i="4"],.slide[data-i="5"],.slide[data-i="6"]{padding-top:clamp(70px,10vh,100px)!important;justify-content:flex-start!important}
+  .slide[data-i="4"] .boat-wrap,.slide[data-i="5"] .boat-wrap,.slide[data-i="6"] .boat-wrap{gap:0!important;align-content:flex-start}
+  .slide[data-i="4"] .boat-hero,.slide[data-i="5"] .boat-hero,.slide[data-i="6"] .boat-hero{height:26vh!important;margin:0!important}
+  .slide[data-i="4"] .boat-copy,.slide[data-i="5"] .boat-copy,.slide[data-i="6"] .boat-copy{margin-top:20px!important}
+  .slide[data-i="4"] .boat-copy h2,.slide[data-i="5"] .boat-copy h2,.slide[data-i="6"] .boat-copy h2{font-size:clamp(28px,6vw,42px)!important;margin:6px 0 4px!important}
+  .slide[data-i="4"] .boat-copy>div[style*="italic"],.slide[data-i="5"] .boat-copy>div[style*="italic"],.slide[data-i="6"] .boat-copy>div[style*="italic"]{margin-bottom:12px!important;font-size:clamp(14px,1.5vw,18px)!important}
+  .slide[data-i="4"] .body,.slide[data-i="5"] .body,.slide[data-i="6"] .body{font-size:12px!important;line-height:1.5!important}
+  .meta{margin:10px 0 8px!important}
+  .meta .item .k{font-size:clamp(18px,4vw,28px)!important}
+  .meta .item .l{font-size:8px!important;margin-top:4px!important}
+  .strip{margin-top:14px!important}
+  .strip div{height:11vh!important}
+  .feat{margin:6px 0!important;columns:2!important;column-gap:14px!important}
+  .feat li{padding:3px 0 3px 12px!important;font-size:10px!important}
+  .feat li::before{top:7px!important;width:4px!important;height:4px!important}
+  /* P10: titel op 2 regels, foto hoger */
+  .slide[data-i="9"] h2{font-size:clamp(18px,4vw,26px);line-height:1.2;max-width:21ch!important}
+  .slide[data-i="9"] .split{align-items:flex-start;padding-top:20px}
+  .slide[data-i="9"] .copy{gap:0}
+  .slide[data-i="9"] .rule{margin-bottom:12px!important}
+  .slide[data-i="9"] .steps{margin-top:-4px!important}
+  .slide[data-i="9"] .media{background-position:center 70%!important}
+  .slide[data-i="10"] h2{font-size:clamp(18px,3.5vw,24px)}
+  .slide[data-i="10"] .inner{margin-top:-8vh}
+  .slide[data-i="10"] .contact{margin-top:20px;gap:20px}
+  /* P11: verticaal centreren */
+  .close .inner{display:flex;flex-direction:column;justify-content:center;min-height:70vh}
+}
+/* Phone landscape */
+@media (max-width:860px) and (orientation:landscape){
+  .media,.boat-hero{height:70vh}
+  .pano-img{height:50vh}
+  .cul-grid div{height:35vh}
+  .strip div{height:20vh}
+}
+/* Phone portrait */
+@media (max-width:560px){
+  .usps,.steps{grid-template-columns:1fr}
+  h1{font-size:clamp(32px,10vw,56px)}
+  h2{font-size:clamp(24px,6vw,38px)}
+  .cover img{max-width:85vw!important}
+  .pano{padding-top:clamp(65px,12vh,100px)}
+  .pano-img{height:25vh}
+  .media,.boat-hero{height:32vh}
+  .cul-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .cul-grid .tall{grid-row:span 1;grid-column:span 2}
+  .cul-grid .wide{grid-column:span 2}
+  .cul-grid div{height:16vh}
+  .strip div{height:11vh}
+  .meta{gap:12px}
+  .meta .item .k{font-size:clamp(20px,5vw,28px)}
+  .counter{left:16px;bottom:14px}
+  .arrows{right:16px;bottom:12px;gap:8px}
+  .arrows button{width:38px;height:38px;font-size:16px}
+  .dots{bottom:14px;gap:6px}
+  .dots button{width:6px;height:6px}
+}
+/* Small phone */
+@media (max-width:380px){
+  h1{font-size:28px}
+  h2{font-size:22px}
+  .slide{padding:16px}
+  .pano-img{height:22vh}
+  .cul-grid div{height:14vh}
+}
+/* TV / Large screens */
+@media (min-width:1600px){
+  .slide{padding:clamp(40px,5vw,100px)}
+  .pano-img{height:clamp(300px,45vh,520px)}
+  .media,.boat-hero{height:82vh}
+  .strip div{height:clamp(140px,20vh,220px)}
+  .cul-grid{height:65vh}
+}
+</style>
+</head>
+<body>
+<div class="rotate-prompt" data-nl="Draai je apparaat naar portretmodus" data-en="Please rotate your device to portrait mode">
+  <svg viewBox="0 0 24 24"><path d="M16.48 2.52c3.27 1.55 5.61 4.72 5.97 8.48h1.5C23.44 4.84 18.29 0 12 0l-.66.03 3.81 3.81 1.33-1.32zm-6.25-.77c-.59-.59-1.54-.59-2.12 0L1.75 8.11c-.59.59-.59 1.54 0 2.12l12.02 12.02c.59.59 1.54.59 2.12 0l6.36-6.36c.59-.59.59-1.54 0-2.12L10.23 1.75zm4.6 19.44L2.81 9.17l6.36-6.36 12.02 12.02-6.36 6.38zm-7.31.29C4.25 19.94 1.91 16.76 1.55 13H.05C.56 19.16 5.71 24 12 24l.66-.03-3.81-3.81-1.33 1.32z"/></svg>
+  <p data-nl="Draai je apparaat naar portretmodus" data-en="Please rotate your device to portrait mode">Draai je apparaat naar portretmodus</p>
+</div>
+<div class="topbar">
+  <div class="brandmark">Private Canal Cruises <span class="s">★</span></div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="lang-nl" class="on" onclick="setLang('nl')">NL</button>
+    <span class="sep">/</span>
+    <button id="lang-en" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+<div id="deck"></div>
+<div class="hint" id="hint" data-nl="Veeg of gebruik de pijlen" data-en="Swipe or use the arrows"></div>
+<div class="counter"><span class="cur" id="cur">01</span> / <span id="total">11</span></div>
+<div class="dots" id="dots"></div>
+<div class="arrows">
+  <button id="prev" onclick="go(idx-1)" aria-label="Vorige">‹</button>
+  <button id="next" onclick="go(idx+1)" aria-label="Volgende">›</button>
+</div>
+<div class="dev-panel" id="devPanel">
+  <h4>📷 Dev Panel (D = toggle)</h4>
+  <div class="img-name" id="devImgName">-</div>
+  <div class="targets" id="devTargets"></div>
+  <label>Positie X: <span class="val" id="devPosXVal">50%</span></label>
+  <input type="range" id="devPosX" min="0" max="100" value="50">
+  <label>Positie Y: <span class="val" id="devPosYVal">50%</span></label>
+  <input type="range" id="devPosY" min="0" max="100" value="50">
+  <label>Zoom: <span class="val" id="devZoomVal">cover</span></label>
+  <input type="range" id="devZoom" min="50" max="300" value="100">
+  <button onclick="copyDevCSS()">📋 Kopieer CSS</button>
+  <button onclick="copyAllCSS()" style="margin-top:6px">📋 COPY ALL</button>
+</div>
+<script>
+const A="assets/";
+const IMG={
+  cover1:A+"cover-1.jpg",cover2:A+"cover-2.jpg",cover3:A+"cover-3.jpg",coverHero:A+"cover-hero.jpg",
+  begin:A+"begin.jpg",silence:A+"silence.jpg",
+  fleet1:A+"fleet-1.png",fleet2:A+"fleet-2.jpg",fleet3:A+"fleet-3.jpg",
+  saluteExt:A+"salute-ext.png",saluteInt:A+"salute-int.jpg",saluteInt2:A+"salute-int2.jpg",saluteStrip3:A+"salute-strip3.png",
+  styleExt:A+"style-ext.png",styleInt:A+"style-int.jpg",styleInt2:A+"style-int2.jpg",styleInt3:A+"style-int3.jpg",
+  sparkleExt:A+"sparkle-ext.jpg",sparkleInt:A+"sparkle-int.png",sparkleInt2:A+"sparkle-int2.jpg",sparkleInt3:A+"sparkle-int3.jpg",
+  why:A+"why.jpg",
+  cul1:A+"culinair-1.jpg",cul2:A+"culinair-2.jpg",cul3:A+"culinair-3.jpg",cul4:A+"culinair-4.jpg",cul5:A+"culinair-5.png",culHero:A+"culinair-hero.jpg",
+  work:A+"work.png",close:A+"close.jpg",logo:A+"logo.png",
+  coverPortrait:"fotos presentatie/voor waldorf schuin.jpg"
+};
+const T={
+  c_star:"★★★★★",
+  c_sub_nl:"Exclusieve privé vaartochten · Amsterdam",c_sub_en:"Exclusive private canal cruises · Amsterdam",
+  s1_eye_nl:"Wie wij zijn",s1_eye_en:"Who we are",
+  s1_h_nl:"Hoe het begon",s1_h_en:"How it began",
+  s1_p_nl:"Drie klassieke salonboten, met liefde en oog voor detail door onszelf gerestaureerd in vrijwel oorspronkelijke staat. Alle drie dragen de status varend monument. Wat ooit begon als passie voor authentiek vakmanschap, is uitgegroeid tot een high-end rederij die vaart op het allerhoogste niveau.",
+  s1_p_en:"Three classic saloon boats, lovingly restored by hand and returned to their near-original condition with exceptional attention to detail. All three are recognized as national floating monuments. What started as a passion for authentic craftsmanship has evolved into a premier company delivering an exceptional experience at the highest level.",
+  s1_cap_nl:"Salute · Style · Sparkle — afgemeerd voor het Waldorf Astoria, Herengracht",
+  s1_cap_en:"Salute · Style · Sparkle — moored in front of the Waldorf Astoria, Herengracht",
+  s2_eye_nl:"Voor welk doel",s2_eye_en:"What we offer",
+  s2_h_nl:"Genieten in stijl en stilte",s2_h_en:"Enjoy in style and silence",
+  s2_p_nl:"Onze luxe salonboten varen 100% elektrisch en zijn van alle hedendaagse comfort voorzien. Zoals koffie en thee voorzieningen, ijsklontjesmachine en geluidsinstallatie. Geen motorgeluid, geen geuren — alleen het uitzicht en de rust. Wij varen regelmatig voor Amsterdamse vijf sterren hotels en zijn gewend om aan de hoogste verwachtingen te voldoen.",
+  s2_p_en:"Our luxury saloon boats are 100% electric and equipped with every modern comfort, including coffee and tea facilities, an ice machine, and a premium sound system. With no engine noise and no emissions, there is nothing to distract from the views and the tranquillity of the experience. We regularly cruise on behalf of Amsterdam's five-star hotels and are accustomed to meeting the highest standards of service and hospitality.",
+  s3_eye_nl:"Onze vloot",s3_eye_en:"Our fleet",
+  s3_h_nl:"Drie klassieke salonboten",s3_h_en:"Three classic saloon boats",
+  s3_p_nl:"Misschien wel de drie mooiste kleine klassieke boten van Amsterdam. Hun formaat leent zich uitstekend voor de kleinere grachten — daar waar andere boten niet kunnen komen.",
+  s3_p_en:"Quite possibly the three most beautiful small classic boats in Amsterdam. Their compact size makes them perfectly suited to the city's smaller canals, allowing access to waterways that larger vessels simply cannot reach.",
+  b4_name:"Salute",b4_year:"1922",
+  b4_tag_nl:"De sfeer van weleer",b4_tag_en:"The charm of a bygone era",
+  b4_p_nl:"Een sfeervolle salon van gelakt mahoniehout met koperen verlichting, glas-in-lood cabinets en facet geslepen ramen. Authentiek tot in detail, maar voorzien van alle luxe.",
+  b4_p_en:"A characterful saloon of lacquered mahogany with copper lighting, stained-glass cabinets and bevelled windows. Authentic to the last detail, yet equipped with every luxury.",
+  b4_cap_nl:"personen",b4_cap_en:"guests",
+  b4_feat_nl:["Authentieke details","Open dak & open ramen","Wijnklimaatkast","Espresso apparaat","Verwarming","WiFi & Spotify"],
+  b4_feat_en:["Authentic details","Open roof & open windows","Wine climate cabinet","Espresso machine","Heating","WiFi & Spotify"],
+  b5_name:"Style",b5_year:"1914",
+  b5_tag_nl:"Klassieke elegantie",b5_tag_en:"Classic elegance",
+  b5_p_nl:"Met mooi weer kunnen we alles open maken maar behouden een zonbescherming of verzorgen een geheel open boot; sloep model.",
+  b5_p_en:"In fine weather, the boat can be fully opened while still providing sun protection, or we can arrange a completely open vessel in traditional sloop style.",
+  b5_cap_nl:"personen",b5_cap_en:"guests",
+  b5_feat_nl:["Klassieke uitstraling","Volledig elektrisch","Verwarming","Ervaren schipper / host","Uitgebreide bar","Intieme setting"],
+  b5_feat_en:["Classic character","Fully electric","Heating","Experienced skipper / host","Well-stocked bar","Intimate setting"],
+  b6_name:"Sparkle",b6_year:"1905",
+  b6_tag_nl:"Onze nieuwste parel",b6_tag_en:"Our newest gem",
+  b6_p_nl:"De jongste aanwinst en oudste boot van de vloot. Stijlvol gerestaureerd met een verfijnd interieur — perfect voor wie het bijzondere zoekt.",
+  b6_p_en:"The newest addition and the oldest boat in the fleet. Restored with style and a refined interior — perfect for those seeking something truly special.",
+  b6_cap_nl:"personen",b6_cap_en:"guests",
+  b6_feat_nl:["Verfijnd interieur","Volledig elektrisch","Wijnklimaatkast","Rijk gesorteerde bar","Verwarming","Varend monument"],
+  b6_feat_en:["Refined interior","Fully electric","Wine climate cabinet","Richly stocked bar","Heating","Floating monument"],
+  s7_eye_nl:"Waarom Private Canal Cruises",s7_eye_en:"Why Private Canal Cruises",
+  s7_h_nl:"Topkwaliteit op het water",s7_h_en:"Top quality on the water",
+  s7_u_nl:[["Maatwerk","Geen vaste route, geen vaste tijden. U bepaalt op- en afstapplek, duur en sfeer. Wij adviseren en regelen de rest."],["Culinair","Zorgvuldig geselecteerde cateraars met lokale, dagverse ingrediënten. 3-gangen à la carte lunches en diners, wijnen direct uit de klimaatkast."],["Discretie","Ervaren schippers die de stad op hun duimpje kennen, ook de minder bekende plekjes. Een intieme setting voor zaken of een verrassing."]],
+  s7_u_en:[["Tailor-made","No fixed route, no fixed times. You choose the embarkation point, duration and atmosphere. We advise and arrange the rest."],["Culinary","Carefully selected caterers using local, day-fresh ingredients. Three-course à la carte lunches and dinners, wines straight from the climate cabinet."],["Discretion","Experienced skippers who know the city intimately, including its hidden corners. An intimate setting for business or a surprise."]],
+  s8_eye_nl:"Culinair genieten",s8_eye_en:"Culinary highlights",
+  s8_h_nl:"Een culinaire beleving aan boord",s8_h_en:"A culinary experience on board",
+  s8_p_nl:"Van ontbijtvaart tot oesters bij de champagne. Onze 3-gangen à la carte lunches en diners zijn op verzoek uit te breiden. Speciaal geselecteerde wijnen schenken wij direct uit onze wijnklimaatkast.",
+  s8_p_en:"From a breakfast cruise to oysters with champagne. Our three-course à la carte lunches and dinners can be extended on request. Specially selected wines are poured straight from our climate cabinet.",
+  s9_eye_nl:"Onze werkwijze",s9_eye_en:"How we work",
+  s9_h_nl:"Eenvoudig boeken, realtime beschikbaar",s9_h_en:"Simple to book, available in real time",
+  s9_steps_nl:[["Beschikbaarheid","Realtime online check. Rondvaarten met bar tot 3 uur voor vertrek, cateringcruises tot 24 uur ervoor."],["Op maat","Laat uw wensen weten. Wij stemmen route, duur, catering en op- en afstapplek volledig op u af."],["Aan boord","Een ervaren schipper-host verwelkomt uw gasten. Alle comfort, alle service — standaard."],["Nazorg","Heldere afspraken en facturatie. Eén vast aanspreekpunt voor uw hotel of gezelschap."]],
+  s9_steps_en:[["Availability","Real-time online check. Bar cruises up to 3 hours before departure, catering cruises up to 24 hours ahead."],["Tailored","Share your wishes. We tailor route, duration, catering and embarkation point entirely to you."],["On board","An experienced skipper-host welcomes your guests. Every comfort, every service — as standard."],["Aftercare","Clear agreements and invoicing. One dedicated point of contact for your hotel or party."]],
+  s10_eye_nl:"Hoe nu verder",s10_eye_en:"How to proceed",
+  s10_h_nl:"Wij verwelkomen u graag aan boord",s10_h_en:"We would be delighted to welcome you aboard",
+  s10_p_nl:"Graag maken wij vrijblijvend afspraken over samenwerking, beschikbaarheid en tarieven voor uw gasten. Eén telefoontje en wij denken met u mee.",
+  s10_p_en:"We would be glad to discuss partnership, availability and rates for your guests, without obligation. One call and we will be happy to advise you.",
+  s10_l_phone_nl:"Telefoon",s10_l_phone_en:"Phone",
+  s10_l_web_nl:"Website",s10_l_web_en:"Website",
+  s10_l_social_nl:"Volg ons",s10_l_social_en:"Follow us"
+};
+const slides=[
+  ()=>`<div class="slide cover" data-i="0"><div class="cover-bg cover-bg-landscape" style="background-image:url('${IMG.coverHero}');background-position:center 40%"></div><div class="cover-bg cover-bg-portrait" style="background-image:url('${IMG.coverPortrait}');background-position:center"></div><div class="scrim" style="background:radial-gradient(ellipse at center,rgba(16,38,63,.4) 0%,rgba(10,18,32,.85) 100%)"></div><div class="inner"><div class="star reveal">${T.c_star}</div><img src="${IMG.logo}" alt="Private Canal Cruises" class="reveal" style="max-width:clamp(280px,45vw,550px);height:auto"><div class="sub reveal" data-nl="${T.c_sub_nl}" data-en="${T.c_sub_en}">${T.c_sub_nl}</div></div></div>`,
+  ()=>`<div class="slide pano" data-i="1"><div class="pano-grid"><div style="position:relative"><div class="pano-img reveal" style="background-image:url('${IMG.begin}');background-position:50% 61%;background-size:cover"></div><div class="reveal owners-photo" style="position:absolute;bottom:0;right:clamp(20px,4vw,60px);z-index:3;text-align:center;transform:translateY(50%)"><div style="width:clamp(120px,15vw,200px);height:clamp(120px,15vw,200px);border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5)"><img src="fotos presentatie/walter_en_Yuri.png" alt="Walter en Yuri" style="width:120%;height:120%;object-fit:cover;object-position:center;margin:-10%"></div><div style="font-family:var(--display);font-size:clamp(11px,1vw,14px);color:var(--gold);margin-top:12px;letter-spacing:0.04em;font-style:italic" data-nl="Eigenaren Walter en Yuri" data-en="Owners Walter and Yuri">Eigenaren Walter en Yuri</div></div></div><div class="pano-copy"><div class="eyebrow reveal" data-nl="${T.s1_eye_nl}" data-en="${T.s1_eye_en}">${T.s1_eye_nl}</div><h2 class="reveal" style="margin:12px 0 18px" data-nl="${T.s1_h_nl}" data-en="${T.s1_h_en}">${T.s1_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="max-width:64ch" data-nl="${T.s1_p_nl}" data-en="${T.s1_p_en}">${T.s1_p_nl}</p></div></div></div>`,
+  ()=>`<div class="slide bg-cover" data-i="2" style="background-image:url('${IMG.silence}');background-position:center"><div class="scrim"></div><div class="inner" style="padding:clamp(26px,4.6vw,80px);max-width:760px"><div class="eyebrow reveal" data-nl="${T.s2_eye_nl}" data-en="${T.s2_eye_en}">${T.s2_eye_nl}</div><h2 class="reveal" style="margin:14px 0 22px" data-nl="${T.s2_h_nl}" data-en="${T.s2_h_en}">${T.s2_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="color:rgba(243,239,228,.86)" data-nl="${T.s2_p_nl}" data-en="${T.s2_p_en}">${T.s2_p_nl}</p></div></div>`,
+  ()=>`<div class="slide" data-i="3"><div class="inner" style="max-width:1300px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s3_eye_nl}" data-en="${T.s3_eye_en}">${T.s3_eye_nl}</div><h2 class="reveal" style="margin:16px 0 20px" data-nl="${T.s3_h_nl}" data-en="${T.s3_h_en}">${T.s3_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto 40px" data-nl="${T.s3_p_nl}" data-en="${T.s3_p_en}">${T.s3_p_nl}</p><div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">${[["fleet1","Salute","1922","100% 91%","146%"],["fleet2","Style","1914","57% 93%","137%"],["fleet3","Sparkle","1905","0% 50%","102%"]].map(([k,n,y,pos,size])=>`<div><div style="height:38vh;background-image:url('${IMG[k]}');background-size:${size};background-position:${pos};border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"></div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream);margin-top:16px">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:4px">${y}</div></div>`).join("")}</div></div></div>`,
+  ()=>boatSlide(4,"b4",IMG.saluteExt,"1-10",[IMG.saluteInt,IMG.saluteInt2,IMG.saluteStrip3],"0% 53%"),
+  ()=>boatSlide(5,"b5",IMG.styleExt,"1-10",[{url:IMG.styleInt2,pos:"38% 65%",size:"174%"},IMG.styleInt,IMG.styleInt3],"0% 46%","132%"),
+  ()=>boatSlide(6,"b6",IMG.sparkleExt,"10",[IMG.sparkleInt,IMG.sparkleInt2,IMG.sparkleInt3]),
+  ()=>{const items=T.s7_u_nl.map((u,i)=>`<div class="usp reveal"><div class="n">0${i+1}</div><h3 data-nl="${T.s7_u_nl[i][0]}" data-en="${T.s7_u_en[i][0]}">${T.s7_u_nl[i][0]}</h3><p data-nl="${T.s7_u_nl[i][1]}" data-en="${T.s7_u_en[i][1]}">${T.s7_u_nl[i][1]}</p></div>`).join("");return `<div class="slide bg-cover" data-i="7" style="background-image:url('${IMG.why}');justify-content:center"><div class="scrim" style="background:linear-gradient(180deg,rgba(10,18,32,.78),rgba(10,18,32,.86))"></div><div class="inner" style="padding:clamp(26px,4.6vw,80px)"><div class="eyebrow reveal" data-nl="${T.s7_eye_nl}" data-en="${T.s7_eye_en}">${T.s7_eye_nl}</div><h2 class="reveal" style="margin:14px 0 6px" data-nl="${T.s7_h_nl}" data-en="${T.s7_h_en}">${T.s7_h_nl}</h2><div class="usps">${items}</div></div></div>`;},
+  ()=>`<div class="slide" data-i="8"><div class="inner"><div class="eyebrow reveal" data-nl="${T.s8_eye_nl}" data-en="${T.s8_eye_en}">${T.s8_eye_nl}</div><h2 class="reveal" style="margin:12px 0 14px" data-nl="${T.s8_h_nl}" data-en="${T.s8_h_en}">${T.s8_h_nl}</h2><p class="body reveal" style="max-width:70ch;margin-bottom:18px" data-nl="${T.s8_p_nl}" data-en="${T.s8_p_en}">${T.s8_p_nl}</p><div class="cul-grid reveal"><div class="tall" style="background-image:url('${IMG.culHero}');background-position:50% 50%;background-size:cover"></div><div style="background-image:url('${IMG.cul1}');background-position:50% 58%;background-size:126%"></div><div style="background-image:url('${IMG.cul2}');background-position:100% 50%;background-size:119%"></div><div style="background-image:url('${IMG.cul3}');background-position:46% 47%;background-size:cover"></div><div style="background-image:url('${IMG.cul5}');background-position:50% 50%;background-size:cover"></div><div class="wide" style="background-image:url('${IMG.cul4}');background-position:50% 50%;background-size:cover"></div></div></div></div>`,
+  ()=>{const steps=T.s9_steps_nl.map((s,i)=>`<div class="step reveal"><div class="n">0${i+1}</div><h3 data-nl="${T.s9_steps_nl[i][0]}" data-en="${T.s9_steps_en[i][0]}">${T.s9_steps_nl[i][0]}</h3><p data-nl="${T.s9_steps_nl[i][1]}" data-en="${T.s9_steps_en[i][1]}">${T.s9_steps_nl[i][1]}</p></div>`).join("");return `<div class="slide" data-i="9"><div class="split"><div class="copy"><div class="eyebrow reveal" data-nl="${T.s9_eye_nl}" data-en="${T.s9_eye_en}">${T.s9_eye_nl}</div><h2 class="reveal" style="margin:14px 0 18px;max-width:14ch" data-nl="${T.s9_h_nl}" data-en="${T.s9_h_en}">${T.s9_h_nl}</h2><div class="rule reveal"></div><div class="steps reveal" style="grid-template-columns:1fr 1fr;margin-top:8px">${steps}</div></div><div class="media reveal" style="background-image:url('${IMG.work}')"></div></div></div>`;},
+  ()=>`<div class="slide bg-cover close" data-i="10" style="background-image:url('${IMG.close}')"><div class="scrim" style="background:linear-gradient(180deg,rgba(10,18,32,.5),rgba(10,18,32,.9))"></div><div class="inner" style="padding:clamp(26px,4.6vw,80px);max-width:880px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s10_eye_nl}" data-en="${T.s10_eye_en}">${T.s10_eye_nl}</div><h2 class="reveal" style="margin:16px 0 22px" data-nl="${T.s10_h_nl}" data-en="${T.s10_h_en}">${T.s10_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto;color:rgba(243,239,228,.86)" data-nl="${T.s10_p_nl}" data-en="${T.s10_p_en}">${T.s10_p_nl}</p><div class="contact reveal" style="justify-content:center"><div class="item"><div class="l" data-nl="${T.s10_l_phone_nl}" data-en="${T.s10_l_phone_en}">${T.s10_l_phone_nl}</div><a href="tel:+31653993066">+31 6 53 99 30 66</a></div><div class="item"><div class="l" data-nl="${T.s10_l_web_nl}" data-en="${T.s10_l_web_en}">${T.s10_l_web_nl}</div><a href="https://www.privatecanalcruises.nl" target="_blank" rel="noopener">privatecanalcruises.nl</a></div><div class="item"><div class="l" data-nl="${T.s10_l_social_nl}" data-en="${T.s10_l_social_en}">${T.s10_l_social_nl}</div><span>@privatecanalcruises</span></div></div></div></div>`
+];
+function boatSlide(i,key,hero,cap,strip,heroPos="center",heroSize="cover"){
+  const name=T[key+"_name"],year=T[key+"_year"];
+  const fn=T[key+"_feat_nl"],fe=T[key+"_feat_en"];
+  const li=fn.map((f,j)=>`<li data-nl="${fn[j]}" data-en="${fe[j]}">${fn[j]}</li>`).join("");
+  const strips=strip.map(s=>typeof s==='string'?`<div style="background-image:url('${s}')"></div>`:`<div style="background-image:url('${s.url}');background-position:${s.pos||'center'};background-size:${s.size||'cover'}"></div>`).join("");
+  return `<div class="slide" data-i="${i}"><div class="boat-wrap"><div class="boat-hero reveal" style="background-image:url('${hero}');background-position:${heroPos};background-size:${heroSize}"></div><div class="boat-copy"><div class="eyebrow reveal" data-nl="Salonboot · ${year}" data-en="Saloon boat · ${year}">Salonboot · ${year}</div><h2 class="reveal" style="font-size:clamp(42px,5.6vw,86px);margin:8px 0 4px">${name}</h2><div class="reveal" style="font-family:var(--display);font-style:italic;font-size:clamp(17px,1.8vw,25px);color:var(--gold-light);margin-bottom:18px" data-nl="${T[key+"_tag_nl"]}" data-en="${T[key+"_tag_en"]}">${T[key+"_tag_nl"]}</div><p class="body reveal" data-nl="${T[key+"_p_nl"]}" data-en="${T[key+"_p_en"]}">${T[key+"_p_nl"]}</p><div class="meta reveal"><div class="item"><div class="k">${cap}</div><div class="l" data-nl="${T[key+"_cap_nl"]}" data-en="${T[key+"_cap_en"]}">${T[key+"_cap_nl"]}</div></div><div class="item"><div class="k">100%</div><div class="l" data-nl="Elektrisch" data-en="Electric">Elektrisch</div></div><div class="item"><div class="k">★</div><div class="l" data-nl="Varend monument" data-en="Floating monument">Varend monument</div></div></div><ul class="feat reveal">${li}</ul><div class="strip reveal">${strips}</div></div></div></div>`;
+}
+const deck=document.getElementById('deck');
+deck.innerHTML=slides.map(fn=>fn()).join("");
+const slideEls=[...deck.querySelectorAll('.slide')];
+const dotsWrap=document.getElementById('dots');
+slideEls.forEach((_,i)=>{const b=document.createElement('button');b.onclick=()=>go(i);b.setAttribute('aria-label','Slide '+(i+1));dotsWrap.appendChild(b);});
+const dotEls=[...dotsWrap.children];
+document.getElementById('total').textContent=String(slideEls.length).padStart(2,'0');
+let idx=0,lang='nl';
+function go(n){if(n<0||n>=slideEls.length)return;slideEls[idx].classList.remove('active');idx=n;slideEls[idx].classList.add('active');dotEls.forEach((d,i)=>d.classList.toggle('on',i===idx));document.getElementById('cur').textContent=String(idx+1).padStart(2,'0');document.getElementById('prev').disabled=idx===0;document.getElementById('next').disabled=idx===slideEls.length-1;if(idx>0)document.getElementById('hint').classList.add('hide');}
+function setLang(l){lang=l;document.documentElement.lang=l;document.getElementById('lang-nl').classList.toggle('on',l==='nl');document.getElementById('lang-en').classList.toggle('on',l==='en');document.querySelectorAll('[data-nl]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v!==null)el.textContent=v;});document.title=l==='nl'?"Private Canal Cruises — Presentatie":"Private Canal Cruises — Presentation";}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(idx+1);}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(idx-1);}if(e.key==='Home')go(0);if(e.key==='End')go(slideEls.length-1);});
+let x0=null,y0=null;
+deck.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+deck.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){go(dx<0?idx+1:idx-1);}x0=null;y0=null;},{passive:true});
+setLang('nl');go(0);
+
+// Dev Panel
+let devMode=false,devTarget=null;
+const devPanel=document.getElementById('devPanel');
+const devPosX=document.getElementById('devPosX');
+const devPosY=document.getElementById('devPosY');
+const devZoom=document.getElementById('devZoom');
+
+function getImageTargets(){
+  const slide=slideEls[idx];
+  const targets=[];
+  // Background images on slide itself
+  if(slide.style.backgroundImage){
+    targets.push({el:slide,name:slide.style.backgroundImage.match(/url\(['"]?([^'"]+)['"]?\)/)?.[1]||'slide-bg',type:'slide'});
+  }
+  // All elements with background-image
+  slide.querySelectorAll('[style*="background-image"]').forEach((el,i)=>{
+    const bg=el.style.backgroundImage;
+    const name=bg.match(/url\(['"]?([^'"]+)['"]?\)/)?.[1]||`element-${i}`;
+    targets.push({el,name:name.split('/').pop(),type:el.className||'div'});
+  });
+  return targets;
+}
+
+function updateDevPanel(){
+  if(!devMode)return;
+  const targets=getImageTargets();
+  const container=document.getElementById('devTargets');
+  container.innerHTML=targets.map((t,i)=>`<div class="target${devTarget===t.el?' active':''}" onclick="selectDevTarget(${i})">${t.name}</div>`).join('');
+  if(targets.length&&!devTarget)selectDevTarget(0);
+}
+
+function selectDevTarget(i){
+  const targets=getImageTargets();
+  if(!targets[i])return;
+  devTarget=targets[i].el;
+  document.getElementById('devImgName').textContent=targets[i].name;
+  // Read current values
+  const style=getComputedStyle(devTarget);
+  const pos=style.backgroundPosition.split(' ');
+  const posX=parseInt(pos[0])||50;
+  const posY=parseInt(pos[1])||50;
+  devPosX.value=posX;devPosY.value=posY;
+  document.getElementById('devPosXVal').textContent=posX+'%';
+  document.getElementById('devPosYVal').textContent=posY+'%';
+  const size=style.backgroundSize;
+  if(size==='cover'){devZoom.value=100;document.getElementById('devZoomVal').textContent='cover';}
+  else{const z=parseInt(size)||100;devZoom.value=z;document.getElementById('devZoomVal').textContent=z+'%';}
+  updateDevPanel();
+}
+
+devPosX.oninput=()=>{if(!devTarget)return;const v=devPosX.value;document.getElementById('devPosXVal').textContent=v+'%';devTarget.style.backgroundPosition=`${v}% ${devPosY.value}%`;};
+devPosY.oninput=()=>{if(!devTarget)return;const v=devPosY.value;document.getElementById('devPosYVal').textContent=v+'%';devTarget.style.backgroundPosition=`${devPosX.value}% ${v}%`;};
+devZoom.oninput=()=>{if(!devTarget)return;const v=devZoom.value;const txt=v==100?'cover':v+'%';document.getElementById('devZoomVal').textContent=txt;devTarget.style.backgroundSize=v==100?'cover':`${v}%`;};
+
+function copyDevCSS(){
+  if(!devTarget)return;
+  const css=`background-position: ${devPosX.value}% ${devPosY.value}%; background-size: ${devZoom.value==100?'cover':devZoom.value+'%'};`;
+  navigator.clipboard.writeText(css);
+  alert('CSS gekopieerd:\\n'+css);
+}
+
+function copyAllCSS(){
+  const targets=getImageTargets();
+  if(!targets.length)return;
+  const lines=targets.map(t=>{
+    const s=getComputedStyle(t.el);
+    const pos=t.el.style.backgroundPosition||s.backgroundPosition;
+    const size=t.el.style.backgroundSize||s.backgroundSize;
+    return `/* ${t.name} */\nbackground-position: ${pos}; background-size: ${size};`;
+  });
+  const all=lines.join('\n\n');
+  navigator.clipboard.writeText(all);
+  alert('Alle CSS gekopieerd:\\n\\n'+all);
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='d'||e.key==='D'){
+    devMode=!devMode;
+    devPanel.classList.toggle('show',devMode);
+    if(devMode)updateDevPanel();
+  }
+});
+
+// Update dev panel on slide change
+const origGo=go;
+go=function(n){origGo(n);devTarget=null;if(devMode)setTimeout(updateDevPanel,100);};
+</script>
+</body>
+</html>
