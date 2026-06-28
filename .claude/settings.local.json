@@ -14,7 +14,9 @@
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "WebFetch(domain:appsfromniels.github.io)"
+      "WebFetch(domain:appsfromniels.github.io)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api:*)"
     ]
   }
 }
