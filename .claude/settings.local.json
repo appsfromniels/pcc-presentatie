@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(caveman:caveman)",
+      "Bash(copy:*)",
+      "Bash(ipconfig:*)",
+      "Bash(python -m http.server:*)",
+      "Bash(findstr:*)",
+      "Bash(cmd /c \"ipconfig | find \"\"IPv4\"\"\")",
+      "Bash(git init:*)",
+      "Bash(gh auth:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:appsfromniels.github.io)"
+    ]
+  }
+}
