@@ -184,20 +184,11 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .slide[data-i="3"] .inner{padding-top:50px}
   .slide[data-i="3"] .inner>div:last-child{display:flex;flex-direction:column;gap:10px}
   .slide[data-i="3"] .inner>div:last-child>div>div:first-child{height:18vh!important;background-size:cover!important}
-  /* P5/6/7: portrait layout - photo top, text middle, strip bottom */
-  .slide[data-i="4"],.slide[data-i="5"],.slide[data-i="6"]{padding:clamp(50px,6vh,80px) clamp(20px,4vw,40px)!important;justify-content:space-between!important}
-  .slide[data-i="4"] .boat-wrap,.slide[data-i="5"] .boat-wrap,.slide[data-i="6"] .boat-wrap{display:flex!important;flex-direction:column!important;gap:20px!important;height:100%!important;justify-content:space-between!important}
-  .slide[data-i="4"] .boat-hero,.slide[data-i="5"] .boat-hero,.slide[data-i="6"] .boat-hero{width:100%!important;height:35vh!important;order:1!important;margin:0!important;flex-shrink:0!important}
-  .slide[data-i="4"] .boat-copy,.slide[data-i="5"] .boat-copy,.slide[data-i="6"] .boat-copy{order:2!important;flex:1!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
-  .slide[data-i="4"] .boat-copy h2,.slide[data-i="5"] .boat-copy h2,.slide[data-i="6"] .boat-copy h2{font-size:clamp(38px,8vw,56px)!important;margin:8px 0!important}
-  .slide[data-i="4"] .boat-copy>div[style*="italic"],.slide[data-i="5"] .boat-copy>div[style*="italic"],.slide[data-i="6"] .boat-copy>div[style*="italic"]{margin-bottom:16px!important;font-size:clamp(17px,2.5vw,24px)!important}
-  .slide[data-i="4"] .body,.slide[data-i="5"] .body,.slide[data-i="6"] .body{display:none!important}
-  .slide[data-i="4"] .meta,.slide[data-i="5"] .meta,.slide[data-i="6"] .meta{margin:20px 0!important;gap:clamp(24px,5vw,40px)!important}
-  .slide[data-i="4"] .meta .item .k,.slide[data-i="5"] .meta .item .k,.slide[data-i="6"] .meta .item .k{font-size:clamp(28px,6vw,42px)!important}
-  .slide[data-i="4"] .meta .item .l,.slide[data-i="5"] .meta .item .l,.slide[data-i="6"] .meta .item .l{font-size:11px!important}
-  .slide[data-i="4"] .feat,.slide[data-i="5"] .feat,.slide[data-i="6"] .feat{font-size:15px!important;columns:2!important;column-gap:24px!important}
-  .slide[data-i="4"] .strip,.slide[data-i="5"] .strip,.slide[data-i="6"] .strip{order:3!important;width:100%!important;gap:10px!important;flex-shrink:0!important}
-  .slide[data-i="4"] .strip div,.slide[data-i="5"] .strip div,.slide[data-i="6"] .strip div{height:15vh!important;flex:1!important}
+  /* P5/6/7: portrait layout - just stack vertically, keep same styling */
+  .slide[data-i="4"] .boat-wrap,.slide[data-i="5"] .boat-wrap,.slide[data-i="6"] .boat-wrap{display:flex!important;flex-direction:column!important;gap:24px!important}
+  .slide[data-i="4"] .boat-hero,.slide[data-i="5"] .boat-hero,.slide[data-i="6"] .boat-hero{width:100%!important;height:40vh!important;order:1!important}
+  .slide[data-i="4"] .boat-copy,.slide[data-i="5"] .boat-copy,.slide[data-i="6"] .boat-copy{order:2!important}
+  .slide[data-i="4"] .strip div,.slide[data-i="5"] .strip div,.slide[data-i="6"] .strip div{height:14vh!important}
   .meta{margin:10px 0 8px!important}
   .meta .item .k{font-size:clamp(18px,4vw,28px)!important}
   .meta .item .l{font-size:8px!important;margin-top:4px!important}
