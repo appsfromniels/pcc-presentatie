@@ -16,7 +16,15 @@
       "Bash(git push:*)",
       "WebFetch(domain:appsfromniels.github.io)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(cmd /c \"forfiles /P C:\\\\Users\\\\niels\\\\Documents\\\\klanten\\\\PCC\\\\presentatie\\\\assets /C \"\"cmd /c echo @fsize @file\"\" | sort /R\")",
+      "Bash(magick identify:*)",
+      "Bash(identify:*)",
+      "Bash(python -c:*)",
+      "Bash(python:*)",
+      "Bash(ls:*)"
     ]
   }
 }
