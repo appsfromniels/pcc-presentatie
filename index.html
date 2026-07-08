@@ -129,7 +129,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 @media (max-width:1024px){
   .slide{padding:clamp(20px,3.5vw,50px)}
   .pano{padding-top:clamp(60px,9vh,100px)}
-  .slide:not([data-i="3"]) [style*="background-image"]{background-size:cover!important}
+  [style*="background-image"]{background-size:cover!important}
 }
 /* Tablet portrait */
 @media (max-width:860px){
@@ -229,7 +229,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .fullscreen-btn{width:38px;height:38px}
   .dots{bottom:14px;gap:6px}
   .dots button{width:6px;height:6px}
-  .slide:not([data-i="3"]) [style*="background-image"]{background-size:cover!important}
+  [style*="background-image"]{background-size:cover!important}
   p.body{font-size:14px;line-height:1.6}
   .usp p,.step p{font-size:13px}
   .feat li{font-size:12px}
@@ -246,7 +246,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 }
 /* iPad Pro and larger tablets */
 @media (max-width:1400px) and (min-width:1025px){
-  .slide:not([data-i="3"]) [style*="background-image"]{background-size:cover!important}
+  [style*="background-image"]{background-size:cover!important}
 }
 /* TV / Large screens */
 @media (min-width:1600px){
@@ -371,7 +371,7 @@ const slides=[
   ()=>`<div class="slide cover" data-i="0"><div class="cover-bg cover-bg-landscape" style="background-image:url('${IMG.coverHero}');background-position:center 40%"></div><div class="cover-bg cover-bg-portrait" style="background-image:url('${IMG.coverPortrait}');background-position:center"></div><div class="scrim" style="background:radial-gradient(ellipse at center,rgba(16,38,63,.25) 0%,rgba(10,18,32,.7) 100%)"></div><div class="inner"><div class="star reveal">${T.c_star}</div><img src="${IMG.logo}" alt="Private Canal Cruises" class="reveal" style="max-width:clamp(280px,45vw,550px);height:auto"><div class="sub reveal" data-nl="${T.c_sub_nl}" data-en="${T.c_sub_en}">${T.c_sub_nl}</div></div></div>`,
   ()=>`<div class="slide pano" data-i="1"><div class="pano-grid"><div style="position:relative"><div class="pano-img reveal" style="background-image:url('${IMG.begin}');background-position:center;background-size:cover"></div><div class="reveal owners-photo" style="position:absolute;bottom:0;right:clamp(20px,4vw,60px);z-index:3;text-align:center;transform:translateY(50%)"><div style="width:clamp(120px,15vw,200px);height:clamp(120px,15vw,200px);border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5)"><img src="fotos presentatie/walter_en_Yuri.png" alt="Walter en Yuri" style="width:120%;height:120%;object-fit:cover;object-position:center;margin:-10%"></div><div style="font-family:var(--display);font-size:clamp(11px,1vw,14px);color:var(--gold);margin-top:12px;letter-spacing:0.04em;font-style:italic" data-nl="Eigenaren Walter en Yuri" data-en="Owners Walter and Yuri">Eigenaren Walter en Yuri</div></div></div><div class="pano-copy"><div class="eyebrow reveal" data-nl="${T.s1_eye_nl}" data-en="${T.s1_eye_en}">${T.s1_eye_nl}</div><h2 class="reveal" style="margin:12px 0 18px" data-nl="${T.s1_h_nl}" data-en="${T.s1_h_en}">${T.s1_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="max-width:64ch" data-nl="${T.s1_p_nl}" data-en="${T.s1_p_en}">${T.s1_p_nl}</p></div></div></div>`,
   ()=>`<div class="slide bg-cover" data-i="2" style="background-image:url('${IMG.silence}');background-position:center"><div class="scrim"></div><div class="inner" style="padding:clamp(26px,4.6vw,80px);max-width:1000px;padding-bottom:80px"><div class="eyebrow reveal" data-nl="${T.s2_eye_nl}" data-en="${T.s2_eye_en}">${T.s2_eye_nl}</div><h2 class="reveal" style="margin:14px 0 22px" data-nl="${T.s2_h_nl}" data-en="${T.s2_h_en}">${T.s2_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="color:rgba(243,239,228,.86)" data-nl="${T.s2_p_nl}" data-en="${T.s2_p_en}">${T.s2_p_nl}</p></div></div>`,
-  ()=>`<div class="slide" data-i="3"><div class="inner" style="max-width:1300px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s3_eye_nl}" data-en="${T.s3_eye_en}">${T.s3_eye_nl}</div><h2 class="reveal" style="margin:16px 0 20px" data-nl="${T.s3_h_nl}" data-en="${T.s3_h_en}">${T.s3_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto 40px" data-nl="${T.s3_p_nl}" data-en="${T.s3_p_en}">${T.s3_p_nl}</p><div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">${[["fleet1","Salute","1922","35% 75%","cover"],["fleet2","Style","1914","center 85%","120%"],["fleet3","Sparkle","1905","center 65%","95%"]].map(([k,n,y,pos,size])=>`<div><div style="height:38vh;background-image:url('${IMG[k]}');background-size:${size};background-position:${pos};border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"></div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream);margin-top:16px">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:4px">${y}</div></div>`).join("")}</div></div></div>`,
+  ()=>`<div class="slide" data-i="3"><div class="inner" style="max-width:1300px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s3_eye_nl}" data-en="${T.s3_eye_en}">${T.s3_eye_nl}</div><h2 class="reveal" style="margin:16px 0 20px" data-nl="${T.s3_h_nl}" data-en="${T.s3_h_en}">${T.s3_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto 40px" data-nl="${T.s3_p_nl}" data-en="${T.s3_p_en}">${T.s3_p_nl}</p><div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">${[["fleet1","Salute","1922","35% 75%"],["fleet2","Style","1914","center 90%"],["fleet3","Sparkle","1905","center 60%"]].map(([k,n,y,pos])=>`<div><div style="height:38vh;background-image:url('${IMG[k]}');background-size:cover;background-position:${pos};border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"></div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream);margin-top:16px">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:4px">${y}</div></div>`).join("")}</div></div></div>`,
   ()=>boatSlide(4,"b4",IMG.saluteExt,"1-10",[IMG.saluteInt,IMG.saluteInt2,IMG.saluteStrip3]),
   ()=>boatSlide(5,"b5",IMG.styleExt,"1-10",[IMG.styleInt2,IMG.styleInt,IMG.styleInt3]),
   ()=>boatSlide(6,"b6",IMG.sparkleExt,"1-12",[IMG.sparkleInt,IMG.sparkleInt2,IMG.sparkleInt3]),
