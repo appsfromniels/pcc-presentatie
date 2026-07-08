@@ -24,7 +24,9 @@
       "Bash(identify:*)",
       "Bash(python -c:*)",
       "Bash(python:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(where:*)"
     ]
   }
 }
