@@ -11,7 +11,7 @@
 :root{
   --green:#16263f;--green-deep:#101b2e;--cream:#f3efe4;--cream-soft:#e9e3d3;
   --gold:#b08d4f;--gold-light:#c9aa6e;--ink:#1a2740;
-  --muted:rgba(243,239,228,0.62);--line:rgba(243,239,228,0.18);
+  --muted:rgba(243,239,228,0.78);--line:rgba(243,239,228,0.18);
   --display:"Cormorant Garamond",Georgia,serif;--body:"Jost","Helvetica Neue",Arial,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -35,7 +35,8 @@ body{font-family:var(--body);color:var(--cream);-webkit-font-smoothing:antialias
 h1,h2{font-family:var(--display);font-weight:500;line-height:1.02;letter-spacing:.005em}
 h1{font-size:clamp(40px,8.5vw,128px)}
 h2{font-size:clamp(28px,5vw,68px)}
-p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-width:50ch;font-weight:300}
+p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-width:50ch;font-weight:300}
+[style*="background-image"]{background-repeat:no-repeat}
 .rule{width:54px;height:1px;background:var(--gold);margin:0 0 24px}
 .cover{background:var(--green-deep);justify-content:center;align-items:center;text-align:center}
 .cover-bg{position:absolute;inset:0;background-size:cover;z-index:0}
@@ -47,7 +48,7 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
 @keyframes rotate-hint{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-90deg)}}
 @media (max-width:860px) and (orientation:landscape){.rotate-prompt{display:flex}}
 .cover .gallery{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;z-index:0}
-.cover .gallery div{background-size:cover;background-position:center;filter:saturate(.9) brightness(.6)}
+.cover .gallery div{background-size:cover;background-position:center;background-repeat:no-repeat;filter:saturate(.9) brightness(.6)}
 .cover .gallery::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(16,38,63,.5) 0%,rgba(10,18,32,.92) 100%)}
 .cover .inner{z-index:3;transform:translateY(-8vh)}
 .cover .star{font-size:clamp(13px,1.5vw,19px);letter-spacing:.5em;color:var(--gold);margin-bottom:24px}
@@ -106,6 +107,9 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
 .arrows button:hover{border-color:var(--gold);background:rgba(176,141,79,.16)}
 .arrows button:disabled{opacity:.25;cursor:default}
 .arrows button:focus-visible,.dots button:focus-visible,.lang button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.fullscreen-btn{position:fixed;bottom:clamp(18px,2.6vw,36px);right:clamp(140px,12vw,180px);z-index:30;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(243,239,228,.08);color:var(--cream);cursor:pointer;font-size:16px;transition:all .3s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.fullscreen-btn:hover{border-color:var(--gold);background:rgba(176,141,79,.16)}
+.fullscreen-btn svg{width:18px;height:18px;fill:currentColor}
 .hint{position:fixed;bottom:clamp(60px,8vw,90px);left:50%;transform:translateX(-50%);z-index:30;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);opacity:.7;transition:opacity .6s}
 .hint.hide{opacity:0}
 .dev-panel{position:fixed;top:50%;right:20px;transform:translateY(-50%);z-index:100;background:rgba(0,0,0,.92);border:1px solid var(--gold);border-radius:8px;padding:16px;width:280px;font-size:12px;display:none;backdrop-filter:blur(10px)}
@@ -125,6 +129,7 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
 @media (max-width:1024px){
   .slide{padding:clamp(20px,3.5vw,50px)}
   .pano{padding-top:clamp(60px,9vh,100px)}
+  [style*="background-image"]{background-size:cover!important}
 }
 /* Tablet portrait */
 @media (max-width:860px){
@@ -133,18 +138,19 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
   .usps,.steps{grid-template-columns:1fr 1fr;gap:24px}
   .cover .gallery{grid-template-columns:1fr}
   .feat{columns:3;column-gap:20px}
-  .feat li{font-size:11px;padding:4px 0 4px 14px}
+  .feat li{font-size:12px;padding:4px 0 4px 14px}
   .pano-img{height:28vh}
   .pano{padding-top:clamp(80px,12vh,120px)}
   .pano-copy{padding-top:16px}
   .cul-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);height:auto;gap:8px}
   .cul-grid .tall,.cul-grid .wide{grid-row:auto;grid-column:auto}
-  .cul-grid div{height:18vh}
+  .cul-grid div{height:18vh;background-size:cover!important}
   .brandmark{font-size:11px;letter-spacing:.18em}
-  .strip div{height:12vh}
+  .strip div{height:12vh;background-size:cover!important}
   .strip{gap:6px}
   .slide[data-i="2"]{padding-top:clamp(80px,12vh,120px)}
   .slide[data-i="2"] .inner{padding-top:0}
+  .slide[data-i="3"] [style*="background-image"]{background-size:cover!important}
   .slide[data-i="7"]{padding-top:clamp(70px,10vh,100px)}
   .slide[data-i="8"]{padding-top:clamp(70px,10vh,100px)}
   .slide[data-i="8"] h2{max-width:100%}
@@ -152,6 +158,8 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
   .slide[data-i="9"] h2{font-size:clamp(20px,4vw,28px)}
   .slide[data-i="10"]{justify-content:center;padding-bottom:clamp(60px,10vh,100px)}
   .slide[data-i="10"] .contact{margin-top:28px}
+  p.body{font-size:clamp(14px,1.8vw,18px)}
+  .usp p,.step p{font-size:clamp(13px,1.4vw,16px)}
 }
 /* Tablet portrait orientation specific */
 @media (max-width:860px) and (orientation:portrait){
@@ -213,15 +221,20 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
   .cul-grid{grid-template-columns:1fr 1fr;gap:6px}
   .cul-grid .tall{grid-row:span 1;grid-column:span 2}
   .cul-grid .wide{grid-column:span 2}
-  .cul-grid div{height:16vh}
-  .strip div{height:11vh}
+  .cul-grid div{height:16vh;background-size:cover!important}
+  .strip div{height:11vh;background-size:cover!important}
   .meta{gap:12px}
   .meta .item .k{font-size:clamp(20px,5vw,28px)}
   .counter{left:16px;bottom:14px}
   .arrows{right:16px;bottom:12px;gap:8px}
   .arrows button{width:38px;height:38px;font-size:16px}
+  .fullscreen-btn{right:80px;bottom:12px;width:38px;height:38px}
   .dots{bottom:14px;gap:6px}
   .dots button{width:6px;height:6px}
+  [style*="background-image"]{background-size:cover!important}
+  p.body{font-size:14px;line-height:1.6}
+  .usp p,.step p{font-size:13px}
+  .feat li{font-size:12px}
 }
 /* Small phone */
 @media (max-width:380px){
@@ -230,6 +243,8 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
   .slide{padding:16px}
   .pano-img{height:22vh}
   .cul-grid div{height:14vh}
+  .fullscreen-btn{right:70px;width:34px;height:34px}
+  .fullscreen-btn svg{width:14px;height:14px}
 }
 /* TV / Large screens */
 @media (min-width:1600px){
@@ -258,6 +273,9 @@ p.body{font-size:clamp(13px,1.2vw,18px);line-height:1.7;color:var(--muted);max-w
 <div class="hint" id="hint" data-nl="Veeg of gebruik de pijlen" data-en="Swipe or use the arrows"></div>
 <div class="counter"><span class="cur" id="cur">01</span> / <span id="total">11</span></div>
 <div class="dots" id="dots"></div>
+<button class="fullscreen-btn" onclick="toggleFullscreen()" aria-label="Volledig scherm" title="Volledig scherm">
+  <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+</button>
 <div class="arrows">
   <button id="prev" onclick="go(idx-1)" aria-label="Vorige">‹</button>
   <button id="next" onclick="go(idx+1)" aria-label="Volgende">›</button>
@@ -348,7 +366,7 @@ const T={
   s10_l_social_nl:"Volg ons",s10_l_social_en:"Follow us"
 };
 const slides=[
-  ()=>`<div class="slide cover" data-i="0"><div class="cover-bg cover-bg-landscape" style="background-image:url('${IMG.coverHero}');background-position:center 40%"></div><div class="cover-bg cover-bg-portrait" style="background-image:url('${IMG.coverPortrait}');background-position:center"></div><div class="scrim" style="background:radial-gradient(ellipse at center,rgba(16,38,63,.4) 0%,rgba(10,18,32,.85) 100%)"></div><div class="inner"><div class="star reveal">${T.c_star}</div><img src="${IMG.logo}" alt="Private Canal Cruises" class="reveal" style="max-width:clamp(280px,45vw,550px);height:auto"><div class="sub reveal" data-nl="${T.c_sub_nl}" data-en="${T.c_sub_en}">${T.c_sub_nl}</div></div></div>`,
+  ()=>`<div class="slide cover" data-i="0"><div class="cover-bg cover-bg-landscape" style="background-image:url('${IMG.coverHero}');background-position:center 40%"></div><div class="cover-bg cover-bg-portrait" style="background-image:url('${IMG.coverPortrait}');background-position:center"></div><div class="scrim" style="background:radial-gradient(ellipse at center,rgba(16,38,63,.25) 0%,rgba(10,18,32,.7) 100%)"></div><div class="inner"><div class="star reveal">${T.c_star}</div><img src="${IMG.logo}" alt="Private Canal Cruises" class="reveal" style="max-width:clamp(280px,45vw,550px);height:auto"><div class="sub reveal" data-nl="${T.c_sub_nl}" data-en="${T.c_sub_en}">${T.c_sub_nl}</div></div></div>`,
   ()=>`<div class="slide pano" data-i="1"><div class="pano-grid"><div style="position:relative"><div class="pano-img reveal" style="background-image:url('${IMG.begin}');background-position:50% 61%;background-size:cover"></div><div class="reveal owners-photo" style="position:absolute;bottom:0;right:clamp(20px,4vw,60px);z-index:3;text-align:center;transform:translateY(50%)"><div style="width:clamp(120px,15vw,200px);height:clamp(120px,15vw,200px);border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5)"><img src="fotos presentatie/walter_en_Yuri.png" alt="Walter en Yuri" style="width:120%;height:120%;object-fit:cover;object-position:center;margin:-10%"></div><div style="font-family:var(--display);font-size:clamp(11px,1vw,14px);color:var(--gold);margin-top:12px;letter-spacing:0.04em;font-style:italic" data-nl="Eigenaren Walter en Yuri" data-en="Owners Walter and Yuri">Eigenaren Walter en Yuri</div></div></div><div class="pano-copy"><div class="eyebrow reveal" data-nl="${T.s1_eye_nl}" data-en="${T.s1_eye_en}">${T.s1_eye_nl}</div><h2 class="reveal" style="margin:12px 0 18px" data-nl="${T.s1_h_nl}" data-en="${T.s1_h_en}">${T.s1_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="max-width:64ch" data-nl="${T.s1_p_nl}" data-en="${T.s1_p_en}">${T.s1_p_nl}</p></div></div></div>`,
   ()=>`<div class="slide bg-cover" data-i="2" style="background-image:url('${IMG.silence}');background-position:center"><div class="scrim"></div><div class="inner" style="padding:clamp(26px,4.6vw,80px);max-width:760px"><div class="eyebrow reveal" data-nl="${T.s2_eye_nl}" data-en="${T.s2_eye_en}">${T.s2_eye_nl}</div><h2 class="reveal" style="margin:14px 0 22px" data-nl="${T.s2_h_nl}" data-en="${T.s2_h_en}">${T.s2_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="color:rgba(243,239,228,.86)" data-nl="${T.s2_p_nl}" data-en="${T.s2_p_en}">${T.s2_p_nl}</p></div></div>`,
   ()=>`<div class="slide" data-i="3"><div class="inner" style="max-width:1300px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s3_eye_nl}" data-en="${T.s3_eye_en}">${T.s3_eye_nl}</div><h2 class="reveal" style="margin:16px 0 20px" data-nl="${T.s3_h_nl}" data-en="${T.s3_h_en}">${T.s3_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto 40px" data-nl="${T.s3_p_nl}" data-en="${T.s3_p_en}">${T.s3_p_nl}</p><div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">${[["fleet1","Salute","1922","100% 91%","146%"],["fleet2","Style","1914","57% 93%","137%"],["fleet3","Sparkle","1905","0% 50%","102%"]].map(([k,n,y,pos,size])=>`<div><div style="height:38vh;background-image:url('${IMG[k]}');background-size:${size};background-position:${pos};border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"></div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream);margin-top:16px">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:4px">${y}</div></div>`).join("")}</div></div></div>`,
@@ -382,6 +400,18 @@ let x0=null,y0=null;
 deck.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
 deck.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){go(dx<0?idx+1:idx-1);}x0=null;y0=null;},{passive:true});
 setLang('nl');go(0);
+
+// Fullscreen toggle
+function toggleFullscreen(){
+  if(!document.fullscreenElement&&!document.webkitFullscreenElement){
+    const el=document.documentElement;
+    if(el.requestFullscreen)el.requestFullscreen();
+    else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+  }else{
+    if(document.exitFullscreen)document.exitFullscreen();
+    else if(document.webkitExitFullscreen)document.webkitExitFullscreen();
+  }
+}
 
 // Dev Panel
 let devMode=false,devTarget=null;
