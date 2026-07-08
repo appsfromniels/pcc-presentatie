@@ -265,7 +265,19 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .cul-grid div{height:14vh}
   .fullscreen-btn{width:34px;height:34px}
   .fullscreen-btn svg{width:14px;height:14px}
+  .step .n{font-size:24px}
+  .step h3{font-size:14px;margin:8px 0 4px}
+  .step p{font-size:12px;line-height:1.4}
+  .slide[data-i="9"] .split{gap:12px}
+  .slide[data-i="9"] .media{max-height:25vh}
+  .slide[data-i="9"] .media img{max-height:25vh}
 }
+/* P10: ensure photo never overlaps text */
+.slide[data-i="9"] .split{display:flex;flex-direction:column;overflow:hidden}
+.slide[data-i="9"] .copy{flex-shrink:0}
+.slide[data-i="9"] .media{flex-shrink:1;min-height:0;overflow:hidden}
+.slide[data-i="9"] .media img{max-height:100%;width:auto;max-width:100%;object-fit:contain}
+@media (min-width:861px){.slide[data-i="9"] .split{flex-direction:row}}
 /* iPad Pro and larger tablets */
 @media (max-width:1400px) and (min-width:1025px){
   [style*="background-image"]{background-size:cover!important}
