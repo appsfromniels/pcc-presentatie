@@ -59,6 +59,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 .pano{justify-content:center;padding-top:clamp(78px,11vh,130px)}
 .pano-grid{display:flex;flex-direction:column;gap:clamp(22px,3vw,40px);width:100%;max-width:1500px;margin:0 auto}
 .pano-img{width:100%;height:clamp(200px,40vh,440px);background-size:cover;background-position:center;border-radius:2px;box-shadow:0 30px 80px rgba(0,0,0,.42)}
+.owners-photo{position:absolute!important;bottom:0!important;transform:translateY(50%)!important}
 .pano-copy{max-width:1000px}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4.5vw,76px);align-items:center;height:100%}
 .media{height:78vh;border-radius:2px;background-size:cover;background-position:center;box-shadow:0 30px 80px rgba(0,0,0,.4)}
@@ -171,8 +172,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 /* Tablet portrait orientation specific */
 @media (max-width:860px) and (orientation:portrait){
   /* P2: Walter en Yuri foto - midden cirkel op onderkant hoofdfoto */
-  .slide[data-i="1"] .owners-photo{transform:translateY(50%)!important}
-  /* P3: tekstblok volle breedte in portrait, iets hoger */
+    /* P3: tekstblok volle breedte in portrait, iets hoger */
   .slide[data-i="2"]{background-position:center!important}
   .slide[data-i="2"] .inner{padding-bottom:80px!important}
   /* P4: vakken minder hoog, fotos vakvullend */
