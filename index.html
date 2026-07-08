@@ -22,7 +22,7 @@ body{font-family:var(--body);color:var(--cream);-webkit-font-smoothing:antialias
 .slide.active{opacity:1;visibility:visible;z-index:2}
 .slide.bg-cover{background-size:cover;background-position:center;padding:0;justify-content:flex-end}
 .fleet-collage{display:block}
-.fleet-grid{display:none}
+.fleet-grid{display:none!important}
 .slide .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,32,.25) 0%,rgba(10,18,32,.12) 38%,rgba(10,18,32,.82) 100%);z-index:1}
 .slide .inner{position:relative;z-index:2;width:100%}
 .slide.active .reveal{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
@@ -135,8 +135,8 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 }
 /* Tablet portrait */
 @media (max-width:860px){
-  .fleet-collage{display:none}
-  .fleet-grid{display:grid}
+  .fleet-collage{display:none!important}
+  .fleet-grid{display:grid!important}
   .split,.boat-wrap{grid-template-columns:1fr;gap:16px}
   .media,.boat-hero{height:32vh;order:-1;margin-top:10px}
   .usps,.steps{grid-template-columns:1fr 1fr;gap:24px}
