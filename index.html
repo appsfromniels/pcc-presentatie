@@ -18,7 +18,10 @@
 html,body{height:100%;width:100%;overflow:hidden;background:#0a1220}
 body{font-family:var(--body);color:var(--cream);-webkit-font-smoothing:antialiased;font-weight:300}
 #deck{height:100dvh;width:100vw;position:relative}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .9s ease;background:var(--green);padding:clamp(26px,4.6vw,80px);justify-content:center}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .9s ease;background:var(--green);padding:clamp(26px,4.6vw,80px);justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.slide::-webkit-scrollbar{width:6px}
+.slide::-webkit-scrollbar-track{background:transparent}
+.slide::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
 .slide.active{opacity:1;visibility:visible;z-index:2}
 .slide.bg-cover{background-size:cover;background-position:center;padding:0;justify-content:flex-end}
 .fleet-collage{display:block}
@@ -103,11 +106,11 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 .lang button{background:none;border:none;color:var(--muted);font-family:var(--body);font-size:12px;letter-spacing:.18em;cursor:pointer;padding:6px 9px;transition:color .3s}
 .lang button.on{color:var(--gold-light)}
 .lang .sep{color:var(--line)}
-.counter{position:fixed;bottom:clamp(18px,2.6vw,36px);left:clamp(22px,4vw,58px);z-index:30;font-family:var(--display);font-size:clamp(14px,1.3vw,18px);color:var(--muted);letter-spacing:.1em}
+.counter{position:fixed;bottom:clamp(18px,2.6vw,36px);left:clamp(22px,4vw,58px);z-index:30;font-family:var(--display);font-size:clamp(14px,1.3vw,18px);color:var(--muted);letter-spacing:.1em;background:rgba(10,18,32,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:6px 14px;border-radius:12px;border:1px solid rgba(243,239,228,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 .counter .cur{color:var(--cream)}
-.dots{position:fixed;bottom:clamp(18px,2.6vw,36px);left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:10px}
+.dots{position:fixed;bottom:clamp(18px,2.6vw,36px);left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:14px;background:rgba(10,18,32,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 18px;border-radius:20px;border:1px solid rgba(243,239,228,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.3);align-items:center}
 .dots button{width:7px;height:7px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer;transition:all .35s}
-.dots button.on{background:var(--gold);transform:scale(1.25)}
+.dots button.on{background:var(--gold);transform:scale(1.35)}
 .arrows{position:fixed;bottom:clamp(16px,2.6vw,34px);right:clamp(22px,4vw,58px);z-index:30;display:flex;gap:12px}
 .arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(243,239,228,.05);color:var(--cream);cursor:pointer;font-size:18px;transition:all .3s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .arrows button:hover{border-color:var(--gold);background:rgba(176,141,79,.16)}
@@ -172,7 +175,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .usp p,.step p{font-size:clamp(14px,1.5vw,17px)}
 }
 /* Tablet portrait orientation specific */
-@media (max-width:860px) and (orientation:portrait){
+@media (max-width:1024px) and (orientation:portrait){
   /* P2: Walter en Yuri foto - midden cirkel op onderkant hoofdfoto */
     /* P3: tekstblok volle breedte in portrait, iets hoger */
   .slide[data-i="2"]{background-position:center!important}
@@ -192,8 +195,8 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .slide[data-i="4"] .meta,.slide[data-i="5"] .meta,.slide[data-i="6"] .meta{margin:16px 0!important}
   .slide[data-i="4"] .meta .item .k,.slide[data-i="5"] .meta .item .k,.slide[data-i="6"] .meta .item .k{font-size:clamp(24px,5vw,36px)!important}
   .slide[data-i="4"] .feat,.slide[data-i="5"] .feat,.slide[data-i="6"] .feat{font-size:14px!important}
-  .slide[data-i="4"] .strip,.slide[data-i="5"] .strip,.slide[data-i="6"] .strip{order:3!important;margin-top:auto!important}
-  .slide[data-i="4"] .strip div,.slide[data-i="5"] .strip div,.slide[data-i="6"] .strip div{height:18vh!important}
+  .slide[data-i="4"] .strip,.slide[data-i="5"] .strip,.slide[data-i="6"] .strip{order:3!important;margin-top:auto!important;gap:8px!important}
+  .slide[data-i="4"] .strip div,.slide[data-i="5"] .strip div,.slide[data-i="6"] .strip div{height:12vh!important;flex:1!important}
   .meta{margin:10px 0 8px!important}
   .meta .item .k{font-size:clamp(18px,4vw,28px)!important}
   .meta .item .l{font-size:8px!important;margin-top:4px!important}
@@ -231,6 +234,8 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .pano{padding-top:clamp(65px,12vh,100px)}
   .pano-img{height:25vh}
   .media,.boat-hero{height:32vh}
+  .fleet-grid{grid-template-columns:1fr!important;gap:20px!important}
+  .fleet-grid > div > div:first-child{height:18vh!important}
   .cul-grid{grid-template-columns:1fr 1fr;gap:6px}
   .cul-grid .tall{grid-row:span 1;grid-column:span 2}
   .cul-grid .wide{grid-column:span 2}
@@ -238,11 +243,13 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .strip div{height:11vh;background-size:cover!important}
   .meta{gap:12px}
   .meta .item .k{font-size:clamp(20px,5vw,28px)}
-  .counter{left:16px;bottom:14px}
-  .arrows{display:none}
+  .counter{left:16px;bottom:14px;padding:4px 10px}
+  .arrows{position:fixed;bottom:12px;right:16px;z-index:30;display:flex;gap:8px}
+  .arrows button{width:38px;height:38px;font-size:16px}
+  .fullscreen-btn{display:none}
   .slide[data-i="9"] .media{height:auto;max-height:30vh}
   .slide[data-i="9"] .media img{max-height:30vh;width:auto;max-width:100%}
-  .dots{bottom:14px;gap:6px}
+  .dots{bottom:14px;gap:8px;padding:6px 12px;border-radius:15px}
   .dots button{width:6px;height:6px}
   [style*="background-image"]{background-size:cover!important}
   .slide[data-i="9"] .media{background-size:contain!important}
@@ -272,6 +279,19 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .media,.boat-hero{height:82vh}
   .strip div{height:clamp(140px,20vh,220px)}
   .cul-grid{height:65vh}
+}
+/* Laptop & Short viewports landscape */
+@media (max-height:680px) and (orientation:landscape){
+  .slide{padding:clamp(20px,3vh,45px)}
+  h1{font-size:clamp(32px,6vw,80px)}
+  h2{font-size:clamp(24px,4vw,44px)}
+  p.body{font-size:clamp(13px,1.1vw,16px);line-height:1.5;max-width:65ch}
+  .media,.boat-hero{height:60vh}
+  .pano-img{height:35vh}
+  .cul-grid{height:50vh}
+  .strip div{height:12vh}
+  .meta{margin:10px 0 10px!important;gap:20px}
+  .meta .item .k{font-size:clamp(18px,2vw,28px)!important}
 }
 </style>
 </head>
@@ -392,7 +412,7 @@ const slides=[
   ()=>`<div class="slide cover" data-i="0"><div class="cover-bg cover-bg-landscape" style="background-image:url('${IMG.coverHero}');background-position:center 40%"></div><div class="cover-bg cover-bg-portrait" style="background-image:url('${IMG.coverPortrait}');background-position:center"></div><div class="scrim" style="background:radial-gradient(ellipse at center,rgba(16,38,63,.25) 0%,rgba(10,18,32,.7) 100%)"></div><div class="inner"><div class="star reveal">${T.c_star}</div><img src="${IMG.logo}" alt="Private Canal Cruises" class="reveal" style="max-width:clamp(280px,45vw,550px);height:auto"><div class="sub reveal" data-nl="${T.c_sub_nl}" data-en="${T.c_sub_en}">${T.c_sub_nl}</div></div></div>`,
   ()=>`<div class="slide pano" data-i="1"><div class="pano-grid"><div style="position:relative"><div class="pano-img reveal" style="background-image:url('${IMG.begin}');background-position:center;background-size:cover"></div><div class="reveal owners-photo" style="position:absolute;bottom:0;right:clamp(20px,4vw,60px);z-index:3;text-align:center;transform:translateY(50%)"><div style="width:clamp(120px,15vw,200px);height:clamp(120px,15vw,200px);border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5)"><img src="fotos presentatie/walter_en_Yuri.png" alt="Walter en Yuri" style="width:120%;height:120%;object-fit:cover;object-position:center;margin:-10%"></div><div style="font-family:var(--display);font-size:clamp(11px,1vw,14px);color:var(--gold);margin-top:12px;letter-spacing:0.04em;font-style:italic" data-nl="Eigenaren Walter en Yuri" data-en="Owners Walter and Yuri">Eigenaren Walter en Yuri</div></div></div><div class="pano-copy"><div class="eyebrow reveal" data-nl="${T.s1_eye_nl}" data-en="${T.s1_eye_en}">${T.s1_eye_nl}</div><h2 class="reveal" style="margin:12px 0 18px" data-nl="${T.s1_h_nl}" data-en="${T.s1_h_en}">${T.s1_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="max-width:64ch" data-nl="${T.s1_p_nl}" data-en="${T.s1_p_en}">${T.s1_p_nl}</p></div></div></div>`,
   ()=>`<div class="slide bg-cover" data-i="2"><div class="cover-bg cover-bg-landscape" style="background-image:url('${IMG.silence}');background-position:center"></div><div class="cover-bg cover-bg-portrait" style="background-image:url('${IMG.silencePortrait}');background-position:center"></div><div class="scrim"></div><div class="inner" style="padding:clamp(26px,4.6vw,80px);max-width:1000px;padding-bottom:80px"><div class="eyebrow reveal" data-nl="${T.s2_eye_nl}" data-en="${T.s2_eye_en}">${T.s2_eye_nl}</div><h2 class="reveal" style="margin:14px 0 22px" data-nl="${T.s2_h_nl}" data-en="${T.s2_h_en}">${T.s2_h_nl}</h2><div class="rule reveal"></div><p class="body reveal" style="color:rgba(243,239,228,.86)" data-nl="${T.s2_p_nl}" data-en="${T.s2_p_en}">${T.s2_p_nl}</p></div></div>`,
-  ()=>`<div class="slide" data-i="3"><div class="inner" style="max-width:1300px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s3_eye_nl}" data-en="${T.s3_eye_en}">${T.s3_eye_nl}</div><h2 class="reveal" style="margin:16px 0 20px" data-nl="${T.s3_h_nl}" data-en="${T.s3_h_en}">${T.s3_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto 40px" data-nl="${T.s3_p_nl}" data-en="${T.s3_p_en}">${T.s3_p_nl}</p><div class="fleet-collage reveal"><img src="${IMG.fleetCollage}" alt="Salute, Style, Sparkle" style="width:100%;border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"><div style="display:flex;justify-content:space-around;margin-top:16px">${[["Salute","1922"],["Style","1914"],["Sparkle","1905"]].map(([n,y])=>`<div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream)">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:4px">${y}</div></div>`).join("")}</div></div><div class="fleet-grid reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">${[["fleet1","Salute","1922","center"],["fleet2","Style","1914","center"],["fleet3","Sparkle","1905","center"]].map(([k,n,y,pos])=>`<div><div style="height:38vh;background-image:url('${IMG[k]}');background-size:cover;background-position:${pos};border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"></div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream);margin-top:16px">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:4px">${y}</div></div>`).join("")}</div></div></div>`,
+  ()=>`<div class="slide" data-i="3"><div class="inner" style="max-width:1300px;margin:0 auto;text-align:center"><div class="eyebrow reveal" data-nl="${T.s3_eye_nl}" data-en="${T.s3_eye_en}">${T.s3_eye_nl}</div><h2 class="reveal" style="margin:16px 0 20px" data-nl="${T.s3_h_nl}" data-en="${T.s3_h_en}">${T.s3_h_nl}</h2><div class="rule reveal" style="margin:0 auto 24px"></div><p class="body reveal" style="margin:0 auto 40px" data-nl="${T.s3_p_nl}" data-en="${T.s3_p_en}">${T.s3_p_nl}</p><div class="fleet-collage reveal"><img src="${IMG.fleetCollage}" alt="Salute, Style, Sparkle" style="width:100%;border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"><div style="display:flex;justify-content:space-around;margin-top:28px">${[["Salute","1922"],["Style","1914"],["Sparkle","1905"]].map(([n,y])=>`<div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream)">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:8px">${y}</div></div>`).join("")}</div></div><div class="fleet-grid reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">${[["fleet1","Salute","1922","center"],["fleet2","Style","1914","center"],["fleet3","Sparkle","1905","center"]].map(([k,n,y,pos])=>`<div><div style="height:38vh;background-image:url('${IMG[k]}');background-size:cover;background-position:${pos};border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,.4)"></div><div style="font-family:var(--display);font-size:clamp(22px,2.4vw,34px);color:var(--cream);margin-top:16px">${n}</div><div style="font-size:11px;letter-spacing:.22em;color:var(--gold-light);margin-top:8px">${y}</div></div>`).join("")}</div></div></div>`,
   ()=>boatSlide(4,"b4",IMG.saluteExtPortrait,"1-10",[IMG.saluteInt,IMG.saluteInt2,IMG.saluteStrip3]),
   ()=>boatSlide(5,"b5",IMG.styleExt,"1-10",[IMG.styleInt2,IMG.styleInt,IMG.styleInt3]),
   ()=>boatSlide(6,"b6",IMG.sparkleExt,"1-12",[IMG.sparkleInt,IMG.sparkleInt2,IMG.sparkleInt3]),
