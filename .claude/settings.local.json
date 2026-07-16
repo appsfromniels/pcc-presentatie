@@ -29,7 +29,8 @@
       "Bash(where:*)",
       "Bash(cmd /c copy:*)",
       "Bash(cmd /c dir \"C:\\\\Users\\\\niels\\\\Documents\\\\klanten\\\\PCC\\\\presentatie\\\\assets\\\\alledrie_los.png\")",
-      "Bash(magick:*)"
+      "Bash(magick:*)",
+      "Bash(curl:*)"
     ]
   }
 }
