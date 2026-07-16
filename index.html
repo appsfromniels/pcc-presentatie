@@ -127,6 +127,18 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 .dev-panel .target{padding:6px 8px;margin:4px 0;background:rgba(255,255,255,.05);border-radius:4px;cursor:pointer;color:var(--cream);font-size:10px}
 .dev-panel .target:hover{background:rgba(255,255,255,.12)}
 .dev-panel .target.active{border:1px solid var(--gold)}
+/* Start overlay */
+.start-overlay{position:fixed;inset:0;z-index:1000;background:var(--green-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;background-image:url('assets/cover-hero.jpg');background-size:cover;background-position:center}
+.start-overlay::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(16,38,63,.4) 0%,rgba(10,18,32,.85) 100%);z-index:0}
+.start-overlay>*{position:relative;z-index:1}
+.start-overlay.hidden{display:none}
+.start-overlay img{max-width:min(380px,70vw);height:auto;margin-bottom:32px}
+.start-overlay .star{font-size:clamp(12px,1.4vw,17px);letter-spacing:.5em;color:var(--gold);margin-bottom:20px}
+.start-overlay .tagline{font-family:var(--body);font-size:clamp(11px,1.1vw,14px);letter-spacing:.3em;text-transform:uppercase;color:var(--cream);opacity:.8;margin-bottom:48px}
+.start-btn{background:var(--gold);color:var(--green-deep);border:none;padding:18px 48px;border-radius:4px;font-family:var(--display);font-size:clamp(16px,1.6vw,22px);cursor:pointer;letter-spacing:.06em;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:all .3s}
+.start-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.start-overlay .skip{margin-top:24px;background:none;border:none;color:var(--muted);font-family:var(--body);font-size:12px;letter-spacing:.15em;cursor:pointer;opacity:.6;transition:opacity .3s}
+.start-overlay .skip:hover{opacity:1}
 /* Tablet landscape */
 @media (max-width:1024px){
   .slide{padding:clamp(20px,3.5vw,50px)}
@@ -287,18 +299,6 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .usps{gap:16px}
   .strip div{height:60px}
 }
-/* Start overlay */
-.start-overlay{position:fixed;inset:0;z-index:1000;background:var(--green-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;background-image:url('assets/cover-hero.jpg');background-size:cover;background-position:center}
-.start-overlay::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(16,38,63,.4) 0%,rgba(10,18,32,.85) 100%);z-index:0}
-.start-overlay>*{position:relative;z-index:1}
-.start-overlay.hidden{display:none}
-.start-overlay img{max-width:min(380px,70vw);height:auto;margin-bottom:32px}
-.start-overlay .star{font-size:clamp(12px,1.4vw,17px);letter-spacing:.5em;color:var(--gold);margin-bottom:20px}
-.start-overlay .tagline{font-family:var(--body);font-size:clamp(11px,1.1vw,14px);letter-spacing:.3em;text-transform:uppercase;color:var(--cream);opacity:.8;margin-bottom:48px}
-.start-btn{background:var(--gold);color:var(--green-deep);border:none;padding:18px 48px;border-radius:4px;font-family:var(--display);font-size:clamp(16px,1.6vw,22px);cursor:pointer;letter-spacing:.06em;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:all .3s}
-.start-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
-.start-overlay .skip{margin-top:24px;background:none;border:none;color:var(--muted);font-family:var(--body);font-size:12px;letter-spacing:.15em;cursor:pointer;opacity:.6;transition:opacity .3s}
-.start-overlay .skip:hover{opacity:1}
 </style>
 </head>
 <body>
