@@ -249,28 +249,30 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .boat-hero{height:28vh;order:-1}
   .boat-hero-portrait{display:block}
   .boat-hero-landscape{display:none}
+  .slide[data-i="4"] .boat-hero{background-position:center 35%!important}
   .meta{gap:20px;margin:16px 0}
   .meta .item .k{font-size:24px}
   .meta .item .l{font-size:9px;margin-top:5px}
   .feat{columns:2;column-gap:16px;max-width:100%}
   .feat li{font-size:11px;padding:4px 0 4px 12px}
   .feat li::before{top:9px;width:4px;height:4px}
-  .strip{gap:6px;margin-top:16px}
-  .strip div{height:70px}
+  .strip{flex-direction:column;gap:10px;margin-top:16px}
+  .strip div{height:25vh;flex:none}
   /* USPs */
   .usps{grid-template-columns:1fr;gap:20px;margin-top:24px}
   .usp .n{font-size:28px}
   .usp h3{font-size:17px;margin:8px 0 6px}
   .usp p{font-size:13px}
-  /* Culinair */
-  .cul-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);height:auto;gap:6px;margin-top:12px}
+  /* Culinair (P09) - full width stacked */
+  .cul-grid{grid-template-columns:1fr;height:auto;gap:10px;margin-top:12px}
   .cul-grid .tall,.cul-grid .wide{grid-row:auto;grid-column:auto}
-  .cul-grid div{height:14vh}
-  /* Steps/Booking */
+  .cul-grid div{height:28vh}
+  /* Steps/Booking (P10) */
   .steps{grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
   .step .n{font-size:28px}
   .step h3{font-size:15px;margin:8px 0 4px}
   .step p{font-size:12px;line-height:1.45}
+  .slide[data-i="9"]{padding-bottom:80px}
   .slide[data-i="9"] h2{font-size:20px;max-width:100%}
   .slide[data-i="9"] .media{height:auto;min-height:35vh}
   .slide[data-i="9"] .media img{max-height:35vh;width:auto}
