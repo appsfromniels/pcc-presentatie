@@ -99,12 +99,15 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
 .lang button{background:none;border:none;color:var(--muted);font-family:var(--body);font-size:12px;letter-spacing:.18em;cursor:pointer;padding:6px 9px;transition:color .3s}
 .lang button.on{color:var(--gold-light)}
 .lang .sep{color:var(--line)}
-.counter{position:fixed;bottom:clamp(18px,2.6vw,36px);left:clamp(22px,4vw,58px);z-index:30;font-family:var(--display);font-size:clamp(14px,1.3vw,18px);color:var(--muted);letter-spacing:.1em;background:rgba(10,18,32,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:6px 14px;border-radius:12px;border:1px solid rgba(243,239,228,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.counter{position:fixed;bottom:clamp(18px,2.6vw,36px);left:clamp(22px,4vw,58px);z-index:30;font-family:var(--display);font-size:clamp(12px,1.1vw,15px);color:var(--muted);letter-spacing:.1em;background:rgba(10,18,32,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:5px 12px;border-radius:10px;border:1px solid rgba(243,239,228,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.3);opacity:0.5;transition:opacity .4s ease}
 .counter .cur{color:var(--cream)}
-.dots{position:fixed;bottom:clamp(18px,2.6vw,36px);left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:14px;background:rgba(10,18,32,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 18px;border-radius:20px;border:1px solid rgba(243,239,228,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.3);align-items:center}
-.dots button{width:7px;height:7px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer;transition:all .35s}
+.dots{position:fixed;bottom:clamp(18px,2.6vw,36px);left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:11px;background:rgba(10,18,32,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:6px 14px;border-radius:16px;border:1px solid rgba(243,239,228,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.3);align-items:center;opacity:0.5;transition:opacity .4s ease}
+.dots button{width:6px;height:6px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer;transition:all .35s}
 .dots button.on{background:var(--gold);transform:scale(1.35)}
-.arrows{position:fixed;bottom:clamp(16px,2.6vw,34px);right:clamp(22px,4vw,58px);z-index:30;display:flex;gap:12px}
+.counter:hover{opacity:1}
+.dots:hover{opacity:1}
+.arrows{position:fixed;bottom:clamp(16px,2.6vw,34px);right:clamp(22px,4vw,58px);z-index:30;display:flex;gap:12px;opacity:0.5;transition:opacity .4s ease}
+.arrows:hover{opacity:1}
 .arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(243,239,228,.05);color:var(--cream);cursor:pointer;font-size:18px;transition:all .3s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .arrows button:hover{border-color:var(--gold);background:rgba(176,141,79,.16)}
 .arrows button:disabled{opacity:.25;cursor:default}
@@ -226,7 +229,7 @@ p.body{font-size:clamp(14px,1.3vw,20px);line-height:1.7;color:var(--muted);max-w
   .rule{width:40px;margin-bottom:16px}
   .topbar{padding:12px 16px}
   .brandmark{font-size:10px;letter-spacing:.12em}
-  .counter{left:16px;bottom:14px;font-size:12px;padding:5px 10px}
+  .counter{left:16px;bottom:14px;font-size:11px;padding:4px 9px}
   .dots{display:none}
   .arrows{right:16px;bottom:12px;gap:8px}
   .arrows button{width:38px;height:38px;font-size:16px}
